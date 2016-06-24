@@ -6,8 +6,8 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 // and returns the randomly selected quote object
 function getRandomQuote() {
   for (var key in quotes) {
-    var quotesObject = Math.random(quotes[key]);
-    return quotesObject;
+    var theQuote = Math.floor(Math.random() * (quotes.length));
+    return theQuote;
   }
 }
 
@@ -21,8 +21,8 @@ function getRandomQuote() {
 // JS snippet to accomplish that: document.getElementById('quote-box').innerHTML
 function printQuote () {
   var selectedRandomQuote = getRandomQuote();
-  var message = '<p class="quote">' + quotes.quote + '</p>';
-  message += '<p class="source">' + quotes.source + '</p>';
+  var selectedRandomQuote += '<p class="quote">' + quotes.quote + '</p>';
+  selectedRandomQuote += '<p class="source">' + quotes.source + '</p>';
   var div = document.getElementById('quote-box').innerHTML;
   return div
 }
