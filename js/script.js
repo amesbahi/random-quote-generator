@@ -6,12 +6,28 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 // and returns the randomly selected quote object
 function getRandomQuote() {
   for (var key in quotes) {
-    var quotesObject = quotes[key];
+    var quotesObject = Math.random(quotes[key]);
     return quotesObject;
   }
 }
 
-// array of quotes objects
+// printQuote calls the getRandomQuote function and stores the returned quote object in a variable
+// printQuote constructs a string using the different properties of the quote object using the following
+// HTML template: <p class="quote"> [quote here] </p> <p class="source"> [source here]
+// <span class="citation"> [citation here] </span> <span class="year"> [year here] </span> </p>
+// printQuote doesn't add a <span class="citation"> for a missing citation or a
+// <span class="year"> if the year property is missing
+// printQuote displays the final HTML string to the page. You can use the following
+// JS snippet to accomplish that: document.getElementById('quote-box').innerHTML
+function printQuote () {
+  var selectedRandomQuote = getRandomQuote();
+  var message = '<p class="quote">' + quotes.quote + '</p>';
+  message += '<p class="source">' + quotes.source + '</p>';
+  var div = document.getElementById('quote-box').innerHTML;
+  return div
+}
+
+// an array of objects to hold the data for the quotes
 var quotes = [
   {
     quote: 'The journey of a thousand miles begins with one step.',
