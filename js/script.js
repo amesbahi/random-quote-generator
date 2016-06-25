@@ -5,10 +5,8 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 // get random quote function that selects a random quote object from the quotes array
 // and returns the randomly selected quote object
 function getRandomQuote() {
-  for (var key in quotes) {
     var theQuote = Math.floor(Math.random() * (quotes.length));
-    return theQuote;
-  }
+    return quotes[theQuote];
 }
 
 // printQuote calls the getRandomQuote function and stores the returned quote object in a variable
@@ -21,10 +19,8 @@ function getRandomQuote() {
 // JS snippet to accomplish that: document.getElementById('quote-box').innerHTML
 function printQuote () {
   var selectedRandomQuote = getRandomQuote();
-  var selectedRandomQuote += '<p class="quote">' + quotes.quote + '</p>';
-  selectedRandomQuote += '<p class="source">' + quotes.source + '</p>';
-  var div = document.getElementById('quote-box').innerHTML;
-  return div
+  document.getElementById('quote-box').innerHTML = '<p class="quote">' + selectedRandomQuote.quote + '</p>'
+  + '<p class="source">' + selectedRandomQuote.source + '</p>';
 }
 
 // an array of objects to hold the data for the quotes
@@ -72,3 +68,4 @@ var quotes = [
 ];
 
 getRandomQuote();
+printQuote();
