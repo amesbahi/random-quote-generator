@@ -5,12 +5,16 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 // get random quote function that selects a random quote object from the quotes array
 // and returns the randomly selected quote object
 
-// variable that will hold viewed quotes
-var viewedQuotes = [];
-
 function getRandomQuote() {
     var theQuote = Math.floor(Math.random() * (quotes.length));
     return quotes[theQuote];
+}
+
+// function displays a random color each time a new quote is shown
+function randColor() {
+  var hexColorsArray = ['#FF0000', '#008000', '#0000FF', '#800080', '#800000', '#FF00FF'];
+  var hexColor = hexColorsArray[Math.floor(Math.random() * hexColorsArray.length)];
+  document.getElementById('color').style.background = hexColor;
 }
 
 // printQuote calls the getRandomQuote function and stores the returned quote object in a variable
@@ -29,22 +33,15 @@ function printQuote() {
   + '<span class="year">' + selectedRandomQuote.year + '</span>' + '<span class="category">'
   + selectedRandomQuote.category + '</span>' + '</p>';
   document.getElementById('quote-box').innerHTML = html;
+  randColor();
 }
+
+// function to ensure same quote is not shown twice until all of the quotes have been show once
+
 
 // Quotes change automatically after certain amount of time passes
 function changeQuote() {
   var timeoutID = window.setInterval(printQuote, [6000]);
-}
-
-// Background color of page changes each time a new quote is displayed
-function changeColor() {
-    var red = Math.floor(Math.random) * 200;
-    var green = Math.floor(Math.random) * 200;
-    var blue = Math.floor(Math.random) * 200;
-    var colors = [red, green, blue];
-    var theColor = Math.floor(Math.random()) * colors.length;
-    return theColor;
-    theColor = document.getElementById('color').innerHTML;
 }
 
 // an array of objects to hold the data for the quotes
@@ -124,5 +121,5 @@ var quotes = [
 // calling the functions
 getRandomQuote();
 printQuote();
+randColor();
 changeQuote();
-changeColor();
