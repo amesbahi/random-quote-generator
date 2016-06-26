@@ -1,5 +1,5 @@
 // event listener to respond to clicks on the page
-// when user clicks anywhere on the page, the "makeQuote" function is called
+// when user clicks anywhere on the page, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 // variable containing viewed quotes
@@ -82,19 +82,19 @@ var quotes = [
 // get random quote function that selects a random quote object from the quotes array
 // and returns the randomly selected quote object
 function getRandomQuote() {
-    var theQuote = Math.floor(Math.random() * quotes.length);
-    var splicedQuote = quotes.splice(theQuote, 1)[0];
+    var quoteIndex = Math.floor(Math.random() * quotes.length);
+    var splicedQuote = quotes.splice(quoteIndex, 1)[0];
     viewedQuotes.push(splicedQuote);
     if (quotes.length == 0) {
       quotes = viewedQuotes;
       viewedQuotes = [];
     }
-    return quotes[theQuote];
+    return quotes[quoteIndex];
 }
 
 // function displays a random color each time a new quote is shown
 function randColor() {
-  var hexColorsArray = ['#FF0000', '#008000', '#0000FF', '#800080', '#800000', '#FF00FF'];
+  var hexColorsArray = ['#FF0000', '#008000', '#0000FF', '#800080', '#800000', '#FF00FF', '#99ccff', '#00cc66', '#ff6666', '#3366ff'];
   var hexColor = hexColorsArray[Math.floor(Math.random() * hexColorsArray.length)];
   document.getElementById('background-color').style.background = hexColor;
 }
@@ -120,7 +120,7 @@ function printQuote() {
 
 // Quotes change automatically after certain amount of time passes
 function changeQuote() {
-  var timeoutID = window.setInterval(printQuote, [4000]);
+  window.setInterval(printQuote, 4000);
 }
 
 // calling the functions
