@@ -2,43 +2,8 @@
 // when user clicks anywhere on the page, the "makeQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-// get random quote function that selects a random quote object from the quotes array
-// and returns the randomly selected quote object
-function getRandomQuote() {
-    var theQuote = Math.floor(Math.random() * quotes.length);
-    return quotes[theQuote];
-}
-
-// function displays a random color each time a new quote is shown
-function randColor() {
-  var hexColorsArray = ['#FF0000', '#008000', '#0000FF', '#800080', '#800000', '#FF00FF'];
-  var hexColor = hexColorsArray[Math.floor(Math.random() * hexColorsArray.length)];
-  document.getElementById('background-color').style.background = hexColor;
-}
-
-// printQuote calls the getRandomQuote function and stores the returned quote object in a variable
-// printQuote constructs a string using the different properties of the quote object using the following
-// HTML template: <p class="quote"> [quote here] </p> <p class="source"> [source here]
-// <span class="citation"> [citation here] </span> <span class="year"> [year here] </span> </p>
-// printQuote doesn't add a <span class="citation"> for a missing citation or a
-// <span class="year"> if the year property is missing
-// printQuote displays the final HTML string to the page. You can use the following
-// JS snippet to accomplish that: document.getElementById('quote-box').innerHTML
-function printQuote() {
-  var selectedRandomQuote = getRandomQuote();
-  var html = '<p class="quote">' + selectedRandomQuote.quote + '</p>'
-  + '<p class="source">' + selectedRandomQuote.source +
-  '<span class="citation">' + selectedRandomQuote.citation + '</span>'
-  + '<span class="year">' + selectedRandomQuote.year + '</span>' + '<span class="category">'
-  + selectedRandomQuote.category + '</span>' + '</p>';
-  document.getElementById('quote-box').innerHTML = html;
-  randColor();
-}
-
-// Quotes change automatically after certain amount of time passes
-function changeQuote() {
-  var timeoutID = window.setInterval(printQuote, [4000]);
-}
+// variable containing viewed quotes
+var viewedQuotes = [];
 
 // an array of objects to hold the data for the quotes
 var quotes = [
@@ -113,6 +78,50 @@ var quotes = [
     category: 'Inspiration'
   }
 ];
+
+// get random quote function that selects a random quote object from the quotes array
+// and returns the randomly selected quote object
+function getRandomQuote() {
+    var theQuote = Math.floor(Math.random() * quotes.length);
+    var splicedQuote = quotes.splice(theQuote, 1)[0];
+    viewedQuotes.push(splicedQuote);
+    if (quotes.length == 0) {
+      quotes = viewedQuotes;
+      viewedQuotes = [];
+    }
+    return quotes[theQuote];
+}
+
+// function displays a random color each time a new quote is shown
+function randColor() {
+  var hexColorsArray = ['#FF0000', '#008000', '#0000FF', '#800080', '#800000', '#FF00FF'];
+  var hexColor = hexColorsArray[Math.floor(Math.random() * hexColorsArray.length)];
+  document.getElementById('background-color').style.background = hexColor;
+}
+
+// printQuote calls the getRandomQuote function and stores the returned quote object in a variable
+// printQuote constructs a string using the different properties of the quote object using the following
+// HTML template: <p class="quote"> [quote here] </p> <p class="source"> [source here]
+// <span class="citation"> [citation here] </span> <span class="year"> [year here] </span> </p>
+// printQuote doesn't add a <span class="citation"> for a missing citation or a
+// <span class="year"> if the year property is missing
+// printQuote displays the final HTML string to the page. You can use the following
+// JS snippet to accomplish that: document.getElementById('quote-box').innerHTML
+function printQuote() {
+  var selectedRandomQuote = getRandomQuote();
+  var html = '<p class="quote">' + selectedRandomQuote.quote + '</p>'
+  + '<p class="source">' + selectedRandomQuote.source +
+  '<span class="citation">' + selectedRandomQuote.citation + '</span>'
+  + '<span class="year">' + selectedRandomQuote.year + '</span>' + '<span class="category">'
+  + selectedRandomQuote.category + '</span>' + '</p>';
+  document.getElementById('quote-box').innerHTML = html;
+  randColor();
+}
+
+// Quotes change automatically after certain amount of time passes
+function changeQuote() {
+  var timeoutID = window.setInterval(printQuote, [4000]);
+}
 
 // calling the functions
 getRandomQuote();
