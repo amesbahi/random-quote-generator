@@ -100,13 +100,8 @@ function randColor() {
 }
 
 // printQuote calls the getRandomQuote function and stores the returned quote object in a variable
-// printQuote constructs a string using the different properties of the quote object using the following
-// HTML template: <p class="quote"> [quote here] </p> <p class="source"> [source here]
-// <span class="citation"> [citation here] </span> <span class="year"> [year here] </span> </p>
-// printQuote doesn't add a <span class="citation"> for a missing citation or a
-// <span class="year"> if the year property is missing
-// printQuote displays the final HTML string to the page. You can use the following
-// JS snippet to accomplish that: document.getElementById('quote-box').innerHTML
+// printQuote constructs a string using the different properties of the quote object
+// printQuote displays the final HTML string to the page
 function printQuote() {
   var selectedRandomQuote = getRandomQuote();
   var html = '<p class="quote">' + selectedRandomQuote.quote + '</p>'
