@@ -10,14 +10,14 @@ var quotes = [
   {
     quote: 'The journey of a thousand miles begins with one step.',
     source: 'Lao Tzu',
-    citation: 'Wiktionary',
+    citation: 'Tao Te Ching',
     year: 'c 551 bc - c 479 bc',
     category: "Inspiration"
   },
   {
     quote: 'He who knows best knows how little he knows.',
     source: 'Thomas Jefferson',
-    citation: 'Monticello',
+    citation: 'Monticello.org',
     year: '1812',
     category: 'Inspiration'
   },
@@ -54,13 +54,13 @@ var quotes = [
     source: 'Alan Watts',
     citation: 'Wikipedia',
     year: '1915 - 1973',
-    category: 'Inspiration'
+    category: 'Wisdom'
   },
   {
     quote: 'Real generosity toward the future lies in giving all to the present.',
     source: 'Albert Camus',
-    citation: 'Wikipedia',
-    year: '1913 - 1960',
+    citation: 'The Rebel: An Essay on Man and Revolt',
+    year: '1951',
     category: 'Inspiration'
   },
   {
@@ -89,7 +89,7 @@ function getRandomQuote() {
       quotes = viewedQuotes;
       viewedQuotes = [];
     }
-    return quotes[quoteIndex];
+    return splicedQuote;
 }
 
 // function displays a random color each time a new quote is shown
@@ -116,11 +116,13 @@ function printQuote() {
   + selectedRandomQuote.category + '</span>' + '</p>';
   document.getElementById('quote-box').innerHTML = html;
   randColor();
+  console.log("Number of viewed quotes: " + viewedQuotes.length);
+  console.log("Number of quotes remaining: " + quotes.length);
 }
 
 // Quotes change automatically after certain amount of time passes
 function changeQuote() {
-  window.setInterval(printQuote, 4000);
+  window.setInterval(printQuote, 5000);
 }
 
 // calling the functions
