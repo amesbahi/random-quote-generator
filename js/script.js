@@ -93,7 +93,7 @@ function getRandomQuote() {
 }
 
 // function displays a random color each time a new quote is shown
-function setRandColor() {
+function setBackgroundColor() {
   var hexColorsArray = ['#FF0000', '#008000', '#0000FF', '#800080', '#800000', '#FF00FF', '#99ccff', '#00cc66', '#ff6666', '#3366ff'];
   var selectedHexColor = hexColorsArray[Math.floor(Math.random() * hexColorsArray.length)];
   document.getElementById('background-color').style.background = selectedHexColor;
@@ -110,7 +110,7 @@ function printQuote() {
   + '<span class="year">' + selectedRandomQuote.year + '</span>' + '<span class="category">'
   + selectedRandomQuote.category + '</span>' + '</p>';
   document.getElementById('quote-box').innerHTML = html;
-  setRandColor();
+  setBackgroundColor();
   console.log("Number of viewed quotes: " + viewedQuotes.length);
   console.log("Number of quotes remaining: " + quotes.length);
 }
@@ -123,5 +123,5 @@ function changeQuote() {
 // calling the functions
 getRandomQuote();
 printQuote();
-setRandColor();
+setBackgroundColor();
 changeQuote();
